@@ -1,9 +1,10 @@
-export interface ExamBlock {
+export interface Exam {
     _id: string;
-    timeLimit?: string;
-    code: string;
+    point: number;
+    data: string;
     name: string;
-    isActive: boolean;
+    text: string;
+    type: string;
     createdBy: string;
     createdAt: Date;
     updatedAt: Date;
