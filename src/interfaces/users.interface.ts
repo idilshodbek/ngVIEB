@@ -1,7 +1,7 @@
 export interface User {
     _id: string;
     tel: string;
-    password: string;
+    password?: string;
     name: string;
     isActive: boolean;
     role: string;

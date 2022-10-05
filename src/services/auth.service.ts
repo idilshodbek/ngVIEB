@@ -12,7 +12,7 @@ class AuthService {
         let loadedUser: any;
 
         // check if user with entered tel exist
-        var isUserExist = await this.user.findOne({ tel: tel })
+        var isUserExist:any = await this.user.findOne({ tel: tel })
         // if does not user exist with entered tel throw error
         if (!isUserExist) throw new HttpException(401, "A user with this tel could not be found!")
 

@@ -35,26 +35,10 @@ class UserServices {
         }
         var obj: any = {};
         obj.tel = reqData.body.tel;
-
-        if (reqData.body.teacher_salary_type) {
-            var type: string = reqData.body.teacher_salary_type;
-            obj.type = type;
-        }
-        else {
-            obj.type = "fixed";
-        }
         obj.name = reqData.body.name;
         obj.isActive = true;
         obj.createdBy = reqData.userId.toString();
-
-        if (reqData.body.amount) {
-            obj.amount = reqData.body.amount;
-        }
-
-        if (reqData.body.birthday && reqData.body.birthday !== '') {
-            obj.birthday = reqData.body.birthda;
-        }
-
+        obj.role = reqData.body.role;
         if (
             reqData.body.password != "" &&
             reqData.body.password != undefined &&
@@ -88,8 +72,8 @@ class UserServices {
         const userFind: any = await this.user.findById(userId).select("isActive");
         if (!userFind) throw new HttpException(409, "User not found");
 
-        obj.isActive = false;
-        if (userFind.isActive === true) obj.isActive === false
+        obj.isActive = true;
+        if (userFind.isActive === true) obj.isActive = false
         
         const user = await this.user.findByIdAndUpdate(userId, obj);
         if (user) return user;

@@ -1,3 +1,4 @@
+import * as dotenv from 'dotenv'
 import cors from "cors";
 import express, { Router } from 'express';
 import helmet from 'helmet';
@@ -14,6 +15,8 @@ class App {
     public env: boolean;
 
     constructor(routes: Routes[]) {
+        dotenv.config()
+
         this.app = express();
         this.port = process.env.PORT || 80;
         this.env = process.env.NODE_ENV === 'production' ? true : false;
@@ -48,12 +51,12 @@ class App {
             this.app.use(logger('combined'));
             this.app.use(cors({ origin: true, credentials: true }));
         } else {
-            this.app.use(logger('dev'));
+            // this.app.use(logger('dev'));
             this.app.use(cors({ origin: true, credentials: true }));
         }
         this.app.use(cookieParser());
         this.app.use(express.json());
-        this.app.use(express.urlencoded({ extended: false }));
+        this.app.use(express.urlencoded({ extended: true }));
     }
     private initializeRoutes(routes: Routes[]) {
         routes.forEach((route) => {
@@ -66,7 +69,7 @@ class App {
     }
 
 
-    private connectToDatabase() {
+    private async connectToDatabase() {
         const { MONGO_USER, MONGO_PASSWORD, MONGO_PATH, MONGO_CONNECTION_VERB } = process.env;
         const options = {
             useNewUrlParser: true,
@@ -77,7 +80,8 @@ class App {
         if (this.env) {
             //prod db
         } else {
-            mongoose.connect(MONGO_CONNECTION_VERB + '://' + MONGO_USER + ':' + MONGO_PASSWORD + MONGO_PATH, { ...options })
+            const connectToDb = await mongoose.connect(MONGO_CONNECTION_VERB + '://' + MONGO_USER + ':' + MONGO_PASSWORD + MONGO_PATH, { ...options })
+            if(connectToDb) console.log("connected to db")
         }
     }
 }
