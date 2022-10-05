@@ -1,0 +1,27 @@
+paths:
+  /api/users:         # path of the user from your endpoint
+    get:              # endpoint request type (put request)
+      tags:
+        - Users
+      summary: Get all users list
+      produces:
+      - application/json
+      parameters:     # request parameters
+        schema:
+          $ref: '#/definitions/getAllUsers'
+      responses:
+        200:
+          description: Success
+        401:
+          description: Unauthorized users
+definitions:        # Schema definition for the request body
+  getAllUsers:
+    type: object
+    properties:
+      user:
+        type: object
+        properties:
+          tel:
+            type: string
+          password:
+            type: string
