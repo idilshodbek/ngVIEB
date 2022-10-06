@@ -1,10 +1,9 @@
 export interface Exam {
     _id: string;
-    point: number;
-    data: string;
+    timeLimit?: string;
+    code: string;
     name: string;
-    text: string;
-    type: string;
+    isActive: boolean;
     createdBy: string;
     createdAt: Date;
     updatedAt: Date;

@@ -3,35 +3,35 @@ import { User } from '../interfaces/users.interface';
 import UserServices from '../services/users.service';
 
 class UsersController {
-    public userService = new UserServices;
+  public userService = new UserServices;
 
-    public getUsers = async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            console.log("findAllUsersData")
-            const findAllUsersData: User[] = await this.userService.findAllUser(req);
-            res.status(200).json({ data: findAllUsersData, total: findAllUsersData.length, message: "ok" })
-        } catch (error) {
-            next(error);
-        }
+  public getUsers = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      console.log("findAllUsersData")
+      const findAllUsersData: User[] = await this.userService.findAllUser(req);
+      res.status(200).json({ data: findAllUsersData, total: findAllUsersData.length, message: "ok" })
+    } catch (error) {
+      next(error);
     }
+  }
 
-    public getUserById = async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const findOneUserData: User = await this.userService.findUserById(req.params.id);
-            res.status(200).json({ data: findOneUserData, message: 'User found' });
-        } catch (error) {
-            next(error);
-        }
+  public getUserById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const findOneUserData: User = await this.userService.findUserById(req.params.id);
+      res.status(200).json({ data: findOneUserData, message: 'User found' });
+    } catch (error) {
+      next(error);
     }
+  }
 
-    public createUser = async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const createUserData: User = await this.userService.createUser(req);
-            res.status(201).json({ data: createUserData, message: 'User Created' });
-        } catch (error) {
-            next(error);
-        }
+  public createUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const createUserData: User = await this.userService.createUser(req);
+      res.status(201).json({ data: createUserData, message: 'User Created' });
+    } catch (error) {
+      next(error);
     }
+  }
 
   public updateUser = async (req: Request, res: Response, next: NextFunction) => {
     try {

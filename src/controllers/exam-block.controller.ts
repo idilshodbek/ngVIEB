@@ -1,21 +1,52 @@
 import { NextFunction, Request, Response } from 'express';
-import { ExamBlock } from '../interfaces/exam-block.interface';
-import ExamBlockService from '../services/exam-block.service';
+import { Exam } from '../interfaces/exam.interface';
+import ExamService from '../services/exam-block.service';
 
-class ExamBlockController {
-    public examService = new ExamBlockService;
-    public getExam = async (req: Request, res: Response, next: NextFunction) => {
-        console.log("EXAM LIST GETTING")
-    }
+class ExamController {
+    public examService = new ExamService;
     public createExam = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const createExamData: ExamBlock = await this.examService.createExamBlock(req);
-            res.status(201).json({ data: createExamData, message: 'Exam Block Created' });
+            const createExamData: Exam = await this.examService.createExam(req);
+            res.status(201).json({ data: createExamData, message: 'Exam Created' });
         } catch (error) {
             next(error);
         }
     }
 
+    public getAllExam = async(req: Request, res: Response, next: NextFunction) =>{
+        try {
+            const getAllExamData:  Exam[] = await this.examService.findAllExam(req);
+            res.status(200).json({ data: getAllExamData, total: getAllExamData.length, message: "ok" })
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    public getExam = async(req: Request, res: Response, next: NextFunction) =>{
+        try {
+            const getAllExamData:  Exam[] = await this.examService.findExam(req);
+            res.status(200).json({ data: getAllExamData, total: getAllExamData.length, message: "ok" })
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    public updateExam = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const createExamData: Exam = await this.examService.updateExam(req.params.id, req);
+            res.status(200).json({ data: createExamData, message: 'Exam Updated' });
+        } catch (error) {
+            next(error);
+        }
+    }
+    public deleteExam = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const createExamData: Exam = await this.examService.deleteExam(req.params.id);
+            res.status(200).json({ message: 'Exam Deleted' });
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
-export default ExamBlockController;
+export default ExamController;

@@ -1,10 +1,19 @@
 import * as mongoose from 'mongoose';
 import timeZone from 'mongoose-timezone';
-import { Exam } from '../interfaces/exam.interface';
+import { ExamBlock } from '../interfaces/examBlock.interface';
 
 const examSchema = new mongoose.Schema({
-    timeLimit: {
-        type: String
+    point: {
+        type: Number,
+        required: true
+    },
+    text: {
+        type: String,
+        required: true
+    },
+    type: {
+        type: String,
+        required: true
     },
     name: {
         type: String,
@@ -14,7 +23,7 @@ const examSchema = new mongoose.Schema({
         type: Boolean,
         default: true,
     },
-    code: {
+    data: {
         type: String,
     },
     createdBy: {
@@ -24,6 +33,6 @@ const examSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 examSchema.plugin(timeZone);
-const examModel = mongoose.model<Exam & mongoose.Document>('Exam', examSchema);
+const examModel = mongoose.model<ExamBlock & mongoose.Document>('ExamBlock', examSchema);
 
 export default examModel;
