@@ -5,6 +5,7 @@ export interface ExamBlock {
     name: string;
     text: string;
     type: string;
+    parent: string;
     createdBy: string;
     createdAt: Date;
     updatedAt: Date;

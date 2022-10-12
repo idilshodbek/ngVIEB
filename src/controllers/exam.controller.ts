@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { Exam } from '../interfaces/exam.interface';
-import ExamService from '../services/exam-block.service';
+import ExamService from '../services/exam.service';
 
 class ExamController {
     public examService = new ExamService;

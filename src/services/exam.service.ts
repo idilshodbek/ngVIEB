@@ -47,7 +47,7 @@ class ExamService {
     public async updateExam(examId: string, reqData: any): Promise<Exam> {
         const examData: any = await this.exam.findByIdAndUpdate(examId, reqData.body);
         if (examData) return examData;
-        throw new HttpException(409, "You're not user");
+        throw new HttpException(409, "Could not update exam");
     }
 
     public async deleteExam(examId: string): Promise<Exam> {

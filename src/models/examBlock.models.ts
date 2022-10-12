@@ -17,14 +17,17 @@ const examSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        required: true
     },
     isActive: {
         type: Boolean,
         default: true,
     },
     data: {
-        type: String,
+        type: Object,
+    },
+    parent: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Exam'
     },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
@@ -33,6 +36,6 @@ const examSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 examSchema.plugin(timeZone);
-const examModel = mongoose.model<ExamBlock & mongoose.Document>('ExamBlock', examSchema);
+const examBlockModel = mongoose.model<ExamBlock & mongoose.Document>('ExamBlock', examSchema);
 
-export default examModel;
+export default examBlockModel;

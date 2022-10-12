@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv'
+dotenv.config()
 import cors from "cors";
 import express, { Router } from 'express';
 import helmet from 'helmet';
@@ -15,8 +16,6 @@ class App {
     public env: boolean;
 
     constructor(routes: Routes[]) {
-        dotenv.config()
-
         this.app = express();
         this.port = process.env.PORT || 80;
         this.env = process.env.NODE_ENV === 'production' ? true : false;
@@ -54,6 +53,8 @@ class App {
             // this.app.use(logger('dev'));
             this.app.use(cors({ origin: true, credentials: true }));
         }
+        this.app.use("view engine","ejs");
+        this.app.use("views","views")
         this.app.use(cookieParser());
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
@@ -80,6 +81,7 @@ class App {
         if (this.env) {
             //prod db
         } else {
+            console.log(MONGO_CONNECTION_VERB + '://' + MONGO_USER + ':' + MONGO_PASSWORD + MONGO_PATH, { ...options });
             const connectToDb = await mongoose.connect(MONGO_CONNECTION_VERB + '://' + MONGO_USER + ':' + MONGO_PASSWORD + MONGO_PATH, { ...options })
             if(connectToDb) console.log("connected to db")
         }

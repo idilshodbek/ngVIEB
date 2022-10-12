@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import ExamController from '../controllers/exam-block.controller';
+import ExamController from '../controllers/exam.controller';
 import Route from '../interfaces/route-interface';
 import isAuth from "../middlewares/is-auth.middleware";
 
 class ExamRoute implements Route {
-  public path = '/exam/block';
+  public path = '/exam';
   public router = Router();
   public examController = new ExamController();
 
