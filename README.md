@@ -1,9 +1,9 @@
 # ngVIEB
 <b>🚀 Development in the process</b>
-<h4>🔄 On the next updates:</h4>
-<p>Student login</p>
-<p>Real-time checking</p>
-<p>Video confrencing</p>
+<h3>🔄 On the next updates:</h3>
+<p>1. Student login</p>
+<p>2. Real-time checking</p>
+<p>3. Video confrencing</p>
 <p><img 
         src="https://raw.githubusercontent.com/idilshodbek/ngVIEB/main/Screen%20Shot%202022-10-13%20at%203.25.05%20AM.png"
         /></p>
