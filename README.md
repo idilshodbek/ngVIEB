@@ -1,6 +1,6 @@
 # ngVIEB
 <b>🚀 Development in the process</b>
-<b>🔄 On the next updates:</b>
+<h4>🔄 On the next updates:</h4>
 <p>Student login</p>
 <p>Real-time checking</p>
 <p>Video confrencing</p>
