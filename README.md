@@ -1,5 +1,4 @@
 # ngVIEB
-<h3 align="center">Next Gen Virtual Classroom Exercise Builder</h3>
 <p><img 
         src="https://raw.githubusercontent.com/idilshodbek/ngVIEB/main/Screen%20Shot%202022-10-13%20at%203.25.05%20AM.png"
         /></p>
